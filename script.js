@@ -81,7 +81,15 @@ document.body.addEventListener('click', (e) => {
             cartArray.push(item);
         }
 
-        all = `<h2>Your Cart(${cartArray.length})</h2>`
+      
+
+        let totalCart = 0;
+        
+        cartArray.forEach((item) => {
+            totalCart += item.qty
+        })
+
+        all = `<h2>Your Cart(${totalCart})</h2>`
 
         cartArray.forEach((cartItem) => {
             all += `
