@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Red Hat Text", sans-serif;
+    width: 90%;
+    margin: 0 auto;
+    background-color: hsl(13, 31%, 94%)
+}
+
+:root {
+    font-size: 1.25rem;
+}
+
+.menu {
+}
+
+.main-category {
+    font-size: 2.5rem;
+}
+
+.picture-container {
+    position: relative;
+    margin: 0 auto;
+}
+
+.food-image {
+    width: 100%;
+    border-radius: 10px; 
+}
+
+.button-container {
+    position: absolute;
+    width: 100%;
+    bottom: -15px;
+}
+
+.add-to-cart {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 0.7rem 1.3rem;
+    width: 50%;
+    border: 1.5px solid hsl(12, 20%, 44%);
+    margin: 0 auto;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: inherit;
+}
+
+.category {
+    margin-bottom: 0;
+}
+
+.food-name {
+    margin: 0;
+}
+
+.price {
+    margin-top: 0;
+    color: hsl(14, 86%, 42%);
+}
+
+.cart-container {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.cart-container h2 {
+    color: hsl(14, 86%, 42%);
+}
+
+.empty-cart-image {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.cart-container p {
+    text-align: center;
+    margin-top: 0;
+    color: hsl(12, 20%, 44%);
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px){
+    :root {
+        font-size: 1.5rem;
+    }
+
+    .button-container {
+        bottom: -18px;
+    }
+    
+}
+
+
+
+
+/* Desktop */
+@media (min-width: 1200px) {
+    :root {
+        font-size: 1rem;
+    }
+
+    .outer-container {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+    }
+
+    .main-category {
+        grid-column: 1/-1;
+    }
+
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 70%;
+    }
+    
+    .outer-picture-container {
+        max-width: 90%;
+    }
+
+    .picture-container {
+        width: 100%;
+    }
+
+    .add-to-cart {
+        padding: 0.5rem 1rem;
+        width: 70%;
+        border: 1.5px solid hsl(12, 20%, 44%);
+        margin: 0 auto;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: inherit;
+    }
+
+    
+    .cart-container {
+        margin-top: 1.5rem;
+        width: 25%;
+    }
+}
