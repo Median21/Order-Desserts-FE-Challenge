@@ -13,6 +13,10 @@ body {
     justify-content: center;
 }
 
+button {
+    cursor: pointer;
+}
+
 :root {
     font-size: 0.8rem;
 }
@@ -51,7 +55,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 0.7rem 1.3rem;
     width: 60%;
     border: 1.5px solid hsl(12, 20%, 44%);
@@ -149,12 +153,26 @@ body {
     cursor: pointer;
 }
 
+.highlight-menu {
+    border: 2px solid hsl(14, 86%, 42%);
+}
 
 .in-cart {
-    border: 3px solid hsl(14, 86%, 42%);
+    display: flex;
+    justify-content: space-between;
+    background-color: hsl(14, 86%, 42%);
+    color: white;
 }
 
 
+.inc-dec{
+    margin: 0;
+    font-weight: bold;
+    border-radius: 100%;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1199px){
