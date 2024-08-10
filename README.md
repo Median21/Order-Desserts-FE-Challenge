@@ -1,4 +1,4 @@
-<!-- # Frontend Mentor - Product list with cart
+# Frontend Mentor - Product list with cart
 
 ![Design preview for the Product list with cart coding challenge](./preview.jpg)
 
@@ -98,4 +98,3 @@ We love receiving feedback! We're always looking to improve our challenges and o
 This challenge is completely free. Please share it with anyone who will find it useful for practice.
 
 **Have fun building!** 🚀
- -->

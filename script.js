@@ -5,6 +5,11 @@ let cartArray = []; //Full data of dessert
 let cartHTML = "";
 let cartTotalPrice = 0;
 
+const modal = document.querySelector(".modal-background")
+const modalContainer = document.querySelector(".modal-container")
+const ulFood = document.querySelector(".ul-food")
+
+
 fetch("./data.json")
 .then(response => response.json())
 .then(data => renderMenu(data))
@@ -57,17 +62,13 @@ document.body.addEventListener('click', (e) => {
     if (e.target.classList == "add-to-cart" || e.target.classList == "increment inc-dec") {
         fetch("./data.json")
         .then(response => response.json())
-        .then(data => addToCart(data, e.target))
+        .then(data => addToCart(data, e.target, e))
         .catch(err => console.log(err))
-        console.log("NORMAL")
-        console.log(e)
     } else if (e.target.classList == "cart-image") {
-        console.log(e.target.parentElement.dataset.id)
         fetch("./data.json")
         .then(response => response.json())
         .then(data => addToCart(data, e.target.parentElement))
         .catch(err => console.log(err))
-        console.log("IMG")
         
     } else if (e.target.classList == "decrement inc-dec") {
         decrementItem(e.target)
@@ -76,6 +77,14 @@ document.body.addEventListener('click', (e) => {
         
     } else if (e.target.classList == "delete") {
         removeFromCart(e.target);
+    } else if (e.target.classList == "confirm-order-btn") {
+        confirmOrder(e)
+    } else if (e.target.classList.contains("new-order")) {
+        cartArray = []; //Full data of dessert
+        cartHTML = "";
+        cartTotalPrice = 0;
+
+        location.reload()
     }
 
 
@@ -83,13 +92,11 @@ document.body.addEventListener('click', (e) => {
      
 
 //ADDSITEM TO CART / Increments~~~~~~~~~~~~~
-function addToCart(data, e) {
-
+function addToCart(data, e, event) {
     const filtered = data.filter(dessert => {
         return e.dataset.id == dessert.id;
     })
 
-    console.log(e.parentElement)
     const item = filtered[0]
 
     let itemExists = false;
@@ -100,7 +107,6 @@ function addToCart(data, e) {
             itemExists =  true;
             e.parentElement.innerHTML =`
             <button class="decrement inc-dec" data-id=${cartArray[i].id}>-</button>${cartArray[i].qty}<button class="increment inc-dec" data-id=${cartArray[i].id}>+</button>`;
-            console.log(cartArray[i])
             break;
         }
     }
@@ -108,7 +114,6 @@ function addToCart(data, e) {
     if (!itemExists) {
         item.qty = 1;
         cartArray.push(item);
-        console.log(cartArray)
         e.offsetParent.offsetParent.children[0].classList.add("highlight-menu")
         e.classList.add("in-cart")
         e.innerHTML = `<button class="decrement inc-dec" data-id=${item.id}>-</button>${item.qty}<button class="increment inc-dec" data-id=${item.id}>+</button>`;
@@ -131,7 +136,7 @@ function addToCart(data, e) {
         <div class="cart-item-container">
             <div>
                 <h3>${cartItem.name}</h3>
-                <span class="qty-span">${cartItem.qty}x @ $${cartItem.price.toFixed(2)} <strong>$${((cartItem.qty * cartItem.price).toFixed(2))}</strong></span>
+                <strong><span class="qty-span">${cartItem.qty}x</span></strong> @ $${cartItem.price.toFixed(2)} <strong>$${((cartItem.qty * cartItem.price).toFixed(2))}</strong>
             </div>
             <div>
                 <button class="delete" data-id=${cartItem.id}><img class="delete-img" src="./assets/images/icon-remove-item.svg"></button>
@@ -194,7 +199,7 @@ function decrementItem(e) {
             <div class="cart-item-container">
             <div>
                 <h3>${cartItem.name}</h3>
-                <span class="qty-span">${cartItem.qty}x @ $${cartItem.price.toFixed(2)} <strong>$${((cartItem.qty * cartItem.price).toFixed(2))}</strong></span>
+                <strong><span class="qty-span">${cartItem.qty}x</span></strong> @ $${cartItem.price.toFixed(2)} <strong>$${((cartItem.qty * cartItem.price).toFixed(2))}</strong>
             </div>
             <div>
                 <button class="delete" data-id=${cartItem.id}><img class="delete-img" src="./assets/images/icon-remove-item.svg"/></button>
@@ -242,7 +247,6 @@ function removeFromCart(e) {
 
     allDecrements.forEach((button) => {
         if (button.dataset.id == e.dataset.id) {
-            console.log(button)
             return buttonToUpdate = button
         }
     })
@@ -257,7 +261,6 @@ function removeFromCart(e) {
 
 
     let indexToBeRemoved = cartArray.findIndex((element) => element.id == e.dataset.id)
-    console.log(indexToBeRemoved)
   
     let totalAfterRemove = cartArray[indexToBeRemoved].price * cartArray[indexToBeRemoved].qty  
     cartTotalPrice -= totalAfterRemove;
@@ -285,7 +288,7 @@ function removeFromCart(e) {
             <div class="cart-item-container">
             <div>
                 <h3>${cartItem.name}</h3>
-                <span class="qty-span">${cartItem.qty}x @ $${cartItem.price.toFixed(2)} <strong>$${((cartItem.qty * cartItem.price).toFixed(2))}</strong></span>
+                <strong><span class="qty-span">${cartItem.qty}x</span></strong> @ $${cartItem.price.toFixed(2)} <strong>$${((cartItem.qty * cartItem.price).toFixed(2))}</strong>
             </div>
             <div>
                 <button class="delete" data-id=${cartItem.id}><img class="delete-img" src="./assets/images/icon-remove-item.svg"></button>
@@ -311,3 +314,43 @@ function removeFromCart(e) {
     }
 }
 
+
+
+function confirmOrder(e) {
+    console.log("Confirmed")
+
+    for(let item of cartArray) {
+        ulFood.innerHTML += `
+            <li class="list-item">
+                <div class="confirmed-item">
+                    <img src=${item.image.thumbnail}>
+                    <div class="name-qty-price">
+                        <h3>${item.name}</h3>
+                        <p><strong><span class="qty-span">${item.qty}x</span></strong> @${item.price.toFixed(2)}</p>
+                    </div>
+                </div>
+
+                <h3>$${(item.qty * item.price).toFixed(2)}</h3>
+                
+            </li>
+         <hr/>
+        `
+    }
+
+
+    let orderTotal = document.createElement("div");
+    orderTotal.classList.add("order-total")
+    orderTotal.innerHTML = `
+        <p>Order Total</p>
+        <h2>$${cartTotalPrice.toFixed(2)}</h2>
+    `
+
+    ulFood.appendChild(orderTotal)
+
+    modal.style.display = "flex"
+
+    modalContainer.innerHTML += `
+        <button class="confirm-order-btn new-order">Start New Order</button>
+    `
+    
+}

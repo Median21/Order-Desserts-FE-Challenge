@@ -109,6 +109,10 @@ button {
     cursor: pointer;
 }
 
+.delete:hover {
+    background-color: rgb(220, 219, 219);
+}
+
 .qty-span {
     color: hsl(14, 86%, 42%);;
 }
@@ -122,6 +126,7 @@ button {
 .order-total {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .carbon-neutral {
@@ -153,6 +158,10 @@ button {
     cursor: pointer;
 }
 
+.confirm-order-btn:hover {
+    background-color: hsl(14, 85%, 36%);
+}
+
 .highlight-menu {
     border: 2px solid hsl(14, 86%, 42%);
 }
@@ -173,6 +182,54 @@ button {
     border: 2px solid white;
     color: white;
 }
+
+.modal-background {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+    height: 100%;
+    width: 100%;
+}
+
+.modal-container {
+    background-color: white;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: auto;
+    max-width: 600px;
+}
+
+.ul-food {
+    list-style: none;
+    padding: 1.5rem;
+    background-color: hsl(13, 31%, 94%);
+    border-radius: 10px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.confirmed-item {
+    display: flex;
+}
+
+.name-qty-price {
+    margin-left: 1rem;
+}
+
+.confirmation-total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1199px){
@@ -221,4 +278,35 @@ button {
         width: 28%;
         margin-top: 4rem;
     }
+
+
+    /* MODAL */
+    .modal-container {
+        width: 35%;
+        margin: auto auto;
+    }
+    
+    .ul-food {
+        list-style: none;
+        padding: 1.5rem;
+        background-color: hsl(13, 31%, 94%);
+        border-radius: 10px;
+    }
+    
+    .list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+    }
+    
+    .confirmed-item {
+        display: flex;
+    }
+    
+    .name-qty-price {
+        margin-left: 1rem;
+    }
+    
+    
 }
