@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [https://order-desserts-ansly.netlify.app](https://your-live-site-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/responsive-product-list-with-cart-cFA5UyDb2l](https://www.frontendmentor.io/solutions/responsive-product-list-with-cart-cFA5UyDb2l)
+- Live Site URL: [https://order-desserts-ansly.netlify.app](https://order-desserts-ansly.netlify.app)
 
 ## My process
 
